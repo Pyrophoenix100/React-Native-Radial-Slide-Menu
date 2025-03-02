@@ -9,7 +9,10 @@ import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
 import "react-native-reanimated";
-import { CircleSlideNavigator } from "../components/CircleSlideNavigator";
+import {
+	CircleSlideMenu,
+	CircleSlideMenuOption,
+} from "../components/CircleSlideMenu";
 import { useColorScheme } from "@/components/useColorScheme";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 
@@ -49,6 +52,27 @@ export default function RootLayout() {
 
 	return <RootLayoutNav />;
 }
+const tab_options: CircleSlideMenuOption[] = [
+	{
+		name: "Home",
+		action: () => {
+			console.log("Goin' Home!");
+		},
+	},
+	{
+		name: "My Profile",
+		action: () => {
+			alert("Not yet implemented!");
+		},
+	},
+	{ name: "Settings", action: () => {} },
+	{ name: "Test", action: () => {} },
+	{ name: "Sandbox", action: () => {} },
+	{ name: "Your Cart", action: () => {} },
+	{ name: "Edit", action: () => {} },
+	{ name: "Save", action: () => {} },
+	{ name: "Delete", action: () => {} },
+];
 
 function RootLayoutNav() {
 	const colorScheme = useColorScheme();
@@ -61,7 +85,11 @@ function RootLayoutNav() {
 					<Stack.Screen name="modal" options={{ presentation: "modal" }} />
 				</Stack>
 			</ThemeProvider>
-			<CircleSlideNavigator />
+			<CircleSlideMenu
+				options={tab_options}
+				position={{ horizontal: "left" }}
+				color="#452165"
+			/>
 		</GestureHandlerRootView>
 	);
 }
